@@ -1,0 +1,33 @@
+version: 2.1
+executors:
+  awscli:
+    docker:
+      - image: amazon/aws-cli
+    environment:
+      AWS_DEFAULT_REGION: ap-northeast-1
+      AWS_PAGER: ""
+
+jobs:
+  build: 
+    machine: true
+    steps:
+      - checkout
+      - run:
+        name: Build react
+        working_directory: my-app
+        command: npm run build
+  pushs3:
+    executor: awscli
+      steps:
+        - run:
+          name: Push s3
+          command: aws s3 cp my-app s3://test000102 --recursive
+workflows:
+  version: 2.1
+  test-pipeline:
+    jobs:
+      - build
+      - pushs3
+        requires:
+          - build
+
