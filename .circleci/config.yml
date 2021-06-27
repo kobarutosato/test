@@ -27,7 +27,7 @@ workflows:
   test-pipeline:
     jobs:
       - build
-      - pushs3
+      - pushs3:
         requires:
           - build
 
