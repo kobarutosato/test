@@ -15,7 +15,9 @@ jobs:
       - run:
           name: Build react
           working_directory: my-app
-          command: npm run build
+          command: | 
+            set -x
+            npm run build
   pushs3:
     executor: awscli
     steps:
