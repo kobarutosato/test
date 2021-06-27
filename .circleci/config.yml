@@ -28,6 +28,6 @@ workflows:
     jobs:
       - build
       - pushs3:
-        requires:
-          - build
+          requires:
+            - build
 
