@@ -13,15 +13,15 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Build react
-        working_directory: my-app
-        command: npm run build
+          name: Build react
+          working_directory: my-app
+          command: npm run build
   pushs3:
     executor: awscli
     steps:
       - run:
-        name: Push s3
-        command: aws s3 cp my-app s3://test000102 --recursive
+          name: Push s3
+          command: aws s3 cp my-app s3://test000102 --recursive
 workflows:
   version: 2.1
   test-pipeline:
